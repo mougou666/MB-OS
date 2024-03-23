@@ -35,8 +35,13 @@ input.onButtonPressed(Button.AB, function () {
     }
     if (菜单 == 1) {
         软件 = 1
-        input.calibrateCompass()
-        basic.showString("" + (input.compassHeading()))
+        if (指南针 == 0) {
+            input.calibrateCompass()
+            指南针 = 1
+        }
+        if (指南针 == 1) {
+            basic.showString("" + (input.compassHeading()))
+        }
     }
     if (菜单 == 4) {
         软件 = 4
@@ -53,7 +58,7 @@ input.onButtonPressed(Button.AB, function () {
     }
     if (菜单 == 7) {
         软件 = 7
-        basic.showString("12:00")
+        basic.showString("MB-OS1.0")
     }
 })
 radio.onReceivedString(function (receivedString) {
@@ -73,10 +78,11 @@ let x = 0
 let sudu = 0
 let 软件 = 0
 let 菜单 = 0
+let 指南针 = 0
 let _3: game.LedSprite = null
 let _2: game.LedSprite = null
 let _1: game.LedSprite = null
-led.setBrightness(128)
+指南针 = 0
 let 音乐 = 0
 菜单 = 114514
 radio.setGroup(1)
@@ -199,12 +205,12 @@ basic.forever(function () {
             . . # . .
             `)
     }
-    if (菜单 == 6) {
+    if (菜单 == 7) {
         basic.showLeds(`
-            . # # # .
+            . . # . .
             # . . . #
-            . # # # .
-            . # . # .
+            # . # . #
+            # . # . #
             . . # . .
             `)
     }
